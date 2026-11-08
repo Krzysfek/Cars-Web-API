@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from 'react-router';
+import { useCarUiStore } from '../store/useCarUiStore';
 
 export default function RootLayout() {
+  const favoriteCount = useCarUiStore((state) => state.favoriteCarIds.length);
   return (
     <div className="app-container">
       <header className="navbar">
@@ -14,7 +16,11 @@ export default function RootLayout() {
           <NavLink to="/cars/new" className="nav-link">
             Dodaj samochód
           </NavLink>
+          <span className="favorite-counter">
+            Ulubione: {favoriteCount}
+          </span>
         </nav>
+    
       </header>
 
       <main className="content">

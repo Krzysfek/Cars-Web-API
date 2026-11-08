@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import type { NewCar } from '../models/Car';
 import { getCarById, updateCar } from '../services/carService';
+import axios from 'axios';
 
 export default function EditCarPage() {
   const { id } = useParams<{ id: string }>();
@@ -41,9 +42,15 @@ export default function EditCarPage() {
           averageFuelConsumption: car.averageFuelConsumption,
           bodyType: car.bodyType,
         });
-      } catch (err) {
-        if (err instanceof Error && err.name !== 'AbortError') {
-          setError(err.message);
+      } catch (caughtError) {
+        if (axios.isCancel(caughtError)) {
+          return;
+        }
+        
+        if (caughtError instanceof Error) {
+          setError(caughtError.message);
+        } else {
+          setError('Wystąpił nieznany błąd.');
         }
       } finally {
         setLoading(false);
