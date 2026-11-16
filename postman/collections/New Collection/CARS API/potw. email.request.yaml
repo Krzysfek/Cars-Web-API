@@ -1,0 +1,17 @@
+$kind: http-request
+description: ""
+url: "{{BaseURL}}/api/account/confirm-email?userID=9ae9e924-188e-4853-b04d-bf9e4ad00521&token=Q2ZESjhJdzJCRGNmQWRCSG1hTzBKNkY0aTE4TkRZaDZocS8rYzY2UTZnVy9DQkQ2dkNNdjVJTWZFaVR6WVR4bFFraW1yYnpITnp6OGVKRVRJVlBLWkZXdG5mUHFPRGVzQ0FKdHpxdnprdWJaTnF5U2hVL0ZSVXBHNHpSWlV5VnI1UTF0c05XZE05Qmw3RWQwL09rOWZaOXRrQ3NuYkRuakJMaThudCs4dTI0eEhadU0wRjVrMkF5K0pndzVxeWtwVGdrSUxxelBiQS83U25OK3lUSVR4ckZXZ2R6L09QdG8xL1FHQlNTbjN1S2hmcVJCWlFuV2RZZmtYNXRDQzRwYmRPbHF6Zz09"
+method: GET
+queryParams:
+  - key: userID
+    value: 9ae9e924-188e-4853-b04d-bf9e4ad00521
+    disabled: false
+    description: ""
+  - key: token
+    value: Q2ZESjhJdzJCRGNmQWRCSG1hTzBKNkY0aTE4TkRZaDZocS8rYzY2UTZnVy9DQkQ2dkNNdjVJTWZFaVR6WVR4bFFraW1yYnpITnp6OGVKRVRJVlBLWkZXdG5mUHFPRGVzQ0FKdHpxdnprdWJaTnF5U2hVL0ZSVXBHNHpSWlV5VnI1UTF0c05XZE05Qmw3RWQwL09rOWZaOXRrQ3NuYkRuakJMaThudCs4dTI0eEhadU0wRjVrMkF5K0pndzVxeWtwVGdrSUxxelBiQS83U25OK3lUSVR4ckZXZ2R6L09QdG8xL1FHQlNTbjN1S2hmcVJCWlFuV2RZZmtYNXRDQzRwYmRPbHF6Zz09
+    disabled: false
+    description: ""
+body:
+  type: json
+  content: ""
+order: 2000

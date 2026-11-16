@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: 97851905-9cae-4dac-8f09-15153b216dca
+
+localResources:
+  specs:
+    - ../Cars.API/obj/Debug/net10.0/EndpointInfo/Cars.API.json

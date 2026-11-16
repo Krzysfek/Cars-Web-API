@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import type { Car } from '../models/Car';
 import { useCarUiStore } from '../store/useCarUiStore';
+import { useAuthStore } from '../store/useAuthStore';
 
 interface CarCardProps {
   car: Car;
@@ -8,13 +9,17 @@ interface CarCardProps {
 }
 
 export default function CarCard({ car, onDelete }: CarCardProps) {
-  const isFavorite = useCarUiStore((state) =>
-    state.favoriteCarIds.includes(car.id)
-  );
+  
 
-  const toggleFavorite = useCarUiStore(
-    (state) => state.toggleFavorite
-  );
+    // Pobranie użytkownika
+  const user = useAuthStore((state) => state.user);
+
+  // Pobranie ulubionych zależnych od ID
+  const favoriteCarIdsByUser = useCarUiStore((state) => state.favoriteCarIdsByUser);
+  const toggleFavorite = useCarUiStore((state) => state.toggleFavorite);
+
+  const favoriteCarIds = user ? favoriteCarIdsByUser[user.id] ?? [] : [];
+  const isFavorite = favoriteCarIds.includes(car.id);
 
   return (
     <li className="car-item">
@@ -33,7 +38,11 @@ export default function CarCard({ car, onDelete }: CarCardProps) {
               ? 'btn favorite-button active-favorite'
               : 'btn favorite-button'
           }
-          onClick={() => toggleFavorite(car.id)}
+          onClick={() => {
+            if (user) {
+              toggleFavorite(user.id, car.id);
+            }
+          }}
         >
           {isFavorite ? 'Ulubiony' : 'Ulubione'}
         </button>

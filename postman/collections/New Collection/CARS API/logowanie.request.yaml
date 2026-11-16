@@ -1,0 +1,14 @@
+$kind: http-request
+description: ""
+url: "{{BaseURL}}/api/account/login"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"student1@test.pl\",\r
+
+    \  \"password\": \"Student123\"\r
+
+    }"
+order: 1000

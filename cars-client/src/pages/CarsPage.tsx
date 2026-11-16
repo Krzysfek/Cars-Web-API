@@ -4,6 +4,7 @@ import type { Car } from '../models/Car';
 import { deleteCar, getCars } from '../services/carService';
 import { useCarUiStore } from '../store/useCarUiStore';
 import CarCard from '../components/CarCard';
+import { useAuthStore } from '../store/useAuthStore';
 
 export default function CarsPage() {
   const [cars, setCars] = useState<Car[]>([]);
@@ -14,7 +15,10 @@ export default function CarsPage() {
   const setSearchTerm = useCarUiStore((state) => state.setSearchTerm);
   const showFavoritesOnly = useCarUiStore((state) => state.showFavoritesOnly);
   const setShowFavoritesOnly = useCarUiStore((state) => state.setShowFavoritesOnly);
-  const favoriteCarIds = useCarUiStore((state) => state.favoriteCarIds);
+  const user = useAuthStore((state) => state.user);
+
+  const favoriteCarIdsByUser = useCarUiStore((state) => state.favoriteCarIdsByUser);
+  const favoriteCarIds = user ? favoriteCarIdsByUser[user.id] ?? [] : [];
   const removeFavorite = useCarUiStore((state) => state.removeFavorite);
 
   useEffect(() => {
@@ -51,7 +55,7 @@ export default function CarsPage() {
 
     try {
       await deleteCar(id);
-      removeFavorite(id); 
+      if (user) { removeFavorite(user.id, id); }
       setCars((currentCars) => currentCars.filter((car) => car.id !== id));
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Błąd usuwania.');

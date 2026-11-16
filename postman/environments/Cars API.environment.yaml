@@ -1,0 +1,10 @@
+name: Cars API
+values:
+  - key: BaseURL
+    value: ''
+  - key: userToken
+    value: ''
+  - key: adminToken
+    value: ''
+  - key: carID
+    value: ''
